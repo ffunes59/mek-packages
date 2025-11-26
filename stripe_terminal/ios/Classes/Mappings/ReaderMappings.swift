@@ -16,7 +16,7 @@ extension Reader {
             locationStatus: locationStatus.toApi(),
             networkStatus: status.toApi(),
             serialNumber: serialNumber,
-            simulated: simulated,
+            simulated: simulated
         )
     }
 }
@@ -216,7 +216,7 @@ extension UpdateComponent {
         return components
     }
 }
-    
+
 extension UpdateTimeEstimate {
     func toApi() -> UpdateTimeEstimateApi {
         switch self {
@@ -265,7 +265,7 @@ extension DiscoveryConfigurationApi {
             fatalError()
         }
     }
-    
+
     func toHostDiscoveryMethod() -> DiscoveryMethod? {
         switch self {
         case _ as BluetoothDiscoveryConfigurationApi:
@@ -284,7 +284,7 @@ extension DiscoveryConfigurationApi {
             fatalError()
         }
     }
-    
+
     func toHostSimulated() -> Bool {
         switch self {
         case let config as BluetoothDiscoveryConfigurationApi:
