@@ -105,6 +105,10 @@ extension DeviceType {
             return .stripeS700
         case .stripeS700DevKit:
             return .stripeS700Devkit
+        case .stripeS710:
+            return .stripeS710
+        case .stripeS710DevKit:
+            return .stripeS710Devkit
         case .verifoneV660p:
             return .verifoneV660p
         case .verifoneM425:
