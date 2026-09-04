@@ -1,4 +1,8 @@
 
+# Unreleased (PushPress fork)
+- fix(android): keep every `com.squareup.okhttp3` module on one version via the okhttp BOM. Apps that also depend on `flutter_stripe` >= 12.5.0 got okhttp 5.3.2 promoted over Stripe Terminal's okhttp-tls 4.12.0, which threw `NoClassDefFoundError: okhttp3/internal/Util` inside `ApiClient.activateReader` and left every reader connection hanging with no error surfaced. See [stripe-terminal-android#700](https://github.com/stripe/stripe-terminal-android/issues/700).
+- feat(ios): added Stripe Reader S710 support (`StripeTerminal` 4.7.3 + the missing `DeviceType.toApi()` cases).
+
 # 4.6.2
 - feat(terminal): Added `id`, `ipAddress`, and `networkStatus` fields to the `Reader` object. Added by [@mahmoud-othmane](https://github.com/mahmoud-othmane).
 

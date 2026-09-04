@@ -70,6 +70,21 @@ android {
 }
 
 dependencies {
+    // stripeterminal-internal-common pins okhttp AND okhttp-tls to 4.12.0, but
+    // flutter_stripe >= 12.5.0 declares okhttp 5.3.2 directly. Gradle's
+    // highest-wins resolution then promotes okhttp to 5.x while okhttp-tls
+    // stays 4.12.0, and okhttp-tls 4.12.0 references okhttp3.internal.Util,
+    // which okhttp 5 removed. The result is a NoClassDefFoundError thrown
+    // inside ApiClient.activateReader — the connection-token step every reader
+    // path funnels through — so discovery works but no reader can connect.
+    //
+    // The BOM keeps every com.squareup.okhttp3 module on one version, so
+    // okhttp-tls follows okhttp wherever the app's other plugins take it.
+    // Stripe tracks native okhttp 5 support in
+    // https://github.com/stripe/stripe-terminal-android/issues/700 — until that
+    // lands, no Terminal SDK release (4.x or 5.x) avoids this on its own.
+    implementation platform("com.squareup.okhttp3:okhttp-bom:5.3.2")
+
     implementation "com.stripe:stripeterminal-taptopay:4.6.0"
     implementation "com.stripe:stripeterminal-core:4.6.0"
 }
